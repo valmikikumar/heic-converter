@@ -89,7 +89,7 @@ ANDROID_KEY_PASSWORD = your_key_password
 
 Your project includes these ready-to-use files:
 
-- ✅ `codemagic_build.yml` - Codemagic configuration
+- ✅ `codemagic.yaml` - Codemagic configuration
 - ✅ `bitrise.yml` - Bitrise configuration  
 - ✅ `android/` - Complete Android setup
 - ✅ `ios/` - Complete iOS setup

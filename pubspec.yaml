@@ -11,7 +11,7 @@ dependencies:
     sdk: flutter
   
   # UI & Navigation
-  cupertino_icons: ^1.0.2
+  cupertino_icons: ^1.0.6
   go_router: ^12.1.3
   
   # State Management
@@ -27,7 +27,7 @@ dependencies:
   
   # File handling & conversion
   file_picker: ^6.1.1
-  heic_to_jpg: ^0.0.3
+  heic_to_jpg: ^0.2.0
   image: ^4.1.3
   pdf: ^3.10.7
   path_provider: ^2.1.1
