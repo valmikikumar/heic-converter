@@ -62,8 +62,9 @@ workflows:
       flutter: stable
       xcode: latest
       cocoapods: default
-      app_store_connect:
-        - apple_id
+      integrations:
+        app_store_connect:
+          - apple_id
       vars:
         APP_STORE_CONNECT_ISSUER_ID: Encrypted(...) # Add your issuer ID
         APP_STORE_CONNECT_KEY_IDENTIFIER: Encrypted(...) # Add your key ID
