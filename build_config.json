@@ -1,0 +1,35 @@
+{
+  "development": {
+    "app_name": "HEIC Converter Pro (Dev)",
+    "bundle_id": "com.heicconverter.pro.dev",
+    "package_name": "com.heicconverter.pro.dev",
+    "enable_ads": false,
+    "enable_analytics": false,
+    "enable_crash_reporting": false,
+    "debug_mode": true,
+    "mock_data": true,
+    "firebase_project": "heic-converter-dev"
+  },
+  "staging": {
+    "app_name": "HEIC Converter Pro (Staging)",
+    "bundle_id": "com.heicconverter.pro.staging",
+    "package_name": "com.heicconverter.pro.staging",
+    "enable_ads": true,
+    "enable_analytics": true,
+    "enable_crash_reporting": true,
+    "debug_mode": false,
+    "mock_data": false,
+    "firebase_project": "heic-converter-staging"
+  },
+  "production": {
+    "app_name": "HEIC Converter Pro",
+    "bundle_id": "com.heicconverter.pro",
+    "package_name": "com.heicconverter.pro",
+    "enable_ads": true,
+    "enable_analytics": true,
+    "enable_crash_reporting": true,
+    "debug_mode": false,
+    "mock_data": false,
+    "firebase_project": "heic-converter-prod"
+  }
+}

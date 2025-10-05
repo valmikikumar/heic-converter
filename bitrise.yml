@@ -1,0 +1,135 @@
+format_version: '11'
+default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
+
+workflows:
+  primary:
+    description: "Primary workflow for HEIC Converter Pro - Android Release"
+    steps:
+    - activate-ssh-key@4:
+        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+    - git-clone@6: {}
+    - cache-pull@2: {}
+    - install-missing-android-tools@3:
+        inputs:
+        - gradlew_path: "$PROJECT_LOCATION/android/gradlew"
+    - flutter-installer@0:
+        inputs:
+        - flutter_version: "3.16.0"
+        - is_update: "false"
+    - flutter-analyze@0:
+        inputs:
+        - project_location: "$PROJECT_LOCATION"
+    - flutter-test@0:
+        inputs:
+        - project_location: "$PROJECT_LOCATION"
+    - android-build@0:
+        inputs:
+        - project_location: "$PROJECT_LOCATION"
+        - module: "app"
+        - variant: "release"
+        - cache_level: "all"
+    - flutter-build@0:
+        inputs:
+        - project_location: "$PROJECT_LOCATION"
+        - platform: "android"
+        - build_type: "apk"
+        - build_flags: "--release --build-name=1.0.$BITRISE_BUILD_NUMBER --build-number=$BITRISE_BUILD_NUMBER"
+    - cache-push@2: {}
+    - deploy-to-bitrise-io@2:
+        inputs:
+        - notify_user_groups: "testers"
+        - notify_emails: "your-email@example.com"
+
+  ios-release:
+    description: "iOS Release workflow for HEIC Converter Pro"
+    steps:
+    - activate-ssh-key@4:
+        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+    - git-clone@6: {}
+    - cache-pull@2: {}
+    - certificate-and-profile-installer@1: {}
+    - flutter-installer@0:
+        inputs:
+        - flutter_version: "3.16.0"
+        - is_update: "false"
+    - flutter-analyze@0:
+        inputs:
+        - project_location: "$PROJECT_LOCATION"
+    - flutter-test@0:
+        inputs:
+        - project_location: "$PROJECT_LOCATION"
+    - flutter-build@0:
+        inputs:
+        - project_location: "$PROJECT_LOCATION"
+        - platform: "ios"
+        - build_type: "ios"
+        - build_flags: "--release --build-name=1.0.$BITRISE_BUILD_NUMBER --build-number=$BITRISE_BUILD_NUMBER"
+    - cache-push@2: {}
+    - deploy-to-bitrise-io@2:
+        inputs:
+        - notify_user_groups: "testers"
+        - notify_emails: "your-email@example.com"
+
+  test-build:
+    description: "Test build workflow for development"
+    steps:
+    - activate-ssh-key@4:
+        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+    - git-clone@6: {}
+    - cache-pull@2: {}
+    - install-missing-android-tools@3:
+        inputs:
+        - gradlew_path: "$PROJECT_LOCATION/android/gradlew"
+    - flutter-installer@0:
+        inputs:
+        - flutter_version: "3.16.0"
+        - is_update: "false"
+    - flutter-analyze@0:
+        inputs:
+        - project_location: "$PROJECT_LOCATION"
+    - flutter-test@0:
+        inputs:
+        - project_location: "$PROJECT_LOCATION"
+    - flutter-build@0:
+        inputs:
+        - project_location: "$PROJECT_LOCATION"
+        - platform: "android"
+        - build_type: "apk"
+        - build_flags: "--debug"
+    - cache-push@2: {}
+    - deploy-to-bitrise-io@2:
+        inputs:
+        - notify_user_groups: "developers"
+        - notify_emails: "dev-team@example.com"
+
+  app-bundle:
+    description: "Build App Bundle for Google Play Store"
+    steps:
+    - activate-ssh-key@4:
+        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+    - git-clone@6: {}
+    - cache-pull@2: {}
+    - install-missing-android-tools@3:
+        inputs:
+        - gradlew_path: "$PROJECT_LOCATION/android/gradlew"
+    - flutter-installer@0:
+        inputs:
+        - flutter_version: "3.16.0"
+        - is_update: "false"
+    - flutter-analyze@0:
+        inputs:
+        - project_location: "$PROJECT_LOCATION"
+    - flutter-test@0:
+        inputs:
+        - project_location: "$PROJECT_LOCATION"
+    - flutter-build@0:
+        inputs:
+        - project_location: "$PROJECT_LOCATION"
+        - platform: "android"
+        - build_type: "appbundle"
+        - build_flags: "--release --build-name=1.0.$BITRISE_BUILD_NUMBER --build-number=$BITRISE_BUILD_NUMBER"
+    - cache-push@2: {}
+    - deploy-to-bitrise-io@2:
+        inputs:
+        - notify_user_groups: "testers"
+        - notify_emails: "your-email@example.com"
