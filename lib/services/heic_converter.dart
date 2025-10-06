@@ -152,8 +152,8 @@ class HEICConverterService {
           outputBytes = Uint8List.fromList(img.encodeBmp(resizedImage));
           break;
         case 'webp':
-          outputBytes = Uint8List.fromList(img.encodeWebP(resizedImage, quality: compressionQuality));
-          break;
+          // WebP encoding not supported in current image package
+          throw Exception('WebP format not supported. Please use PNG or JPG instead.');
         default:
           throw Exception('Unsupported output format: $format');
       }

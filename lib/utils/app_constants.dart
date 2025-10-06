@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class AppConstants {
   // App Info
   static const String appName = 'HEIC Converter Pro';
@@ -116,6 +118,13 @@ class AppConstants {
   static const String usersCollection = 'users';
   static const String conversionsCollection = 'conversions';
   static const String purchasesCollection = 'purchases';
+  
+  // Missing Constants
+  static const String resultRoute = '/result';
+  static const String conversionProgressRoute = '/conversion-progress';
+  static const String filePickerRoute = '/file-picker';
+  static const String convertedFilesBox = 'converted_files';
+  static const Color successColor = Color(0xFF4CAF50);
 }
 
 class AppRoutes {

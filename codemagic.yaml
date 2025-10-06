@@ -62,9 +62,9 @@ workflows:
       flutter: stable
       xcode: latest
       cocoapods: default
-      
-      
-      
+      integrations:
+        app_store_connect:
+          - apple_id
       vars:
         APP_STORE_CONNECT_ISSUER_ID: Encrypted(...) # Add your issuer ID
         APP_STORE_CONNECT_KEY_IDENTIFIER: Encrypted(...) # Add your key ID
@@ -108,11 +108,6 @@ workflows:
         notify:
           success: true
           failure: true
-      app_store_connect:
-        auth: integration
-        submit_to_testflight: true
-        beta_groups:
-          - "Testers"
 
   heic-converter-pro-test:
     name: HEIC Converter Pro - Test Build

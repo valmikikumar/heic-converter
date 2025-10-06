@@ -32,7 +32,7 @@ class FileTile extends StatelessWidget {
                 image: _getImageDecoration(),
                 color: theme.colorScheme.surfaceVariant,
               ),
-              child: _getFallbackWidget(),
+              child: _getFallbackWidget(context),
             ),
             
             // Overlay with file info
@@ -122,7 +122,7 @@ class FileTile extends StatelessWidget {
     }
   }
 
-  Widget _getFallbackWidget() {
+  Widget _getFallbackWidget(BuildContext context) {
     final theme = Theme.of(context);
     
     return Center(
